@@ -42,14 +42,18 @@ function prepare_query($query, $now) {
 
 echo "Test query: $query \n";
 
+// Generate values first.
+$now = time();
+$queries = [];
+for ($i = 1; $i <= 10000; $i++) {
+  $queries[] = prepare_query($query, $now);
+}
+
 try {
   $start_time = get_current_time();
 
-  $now = time();
   // Insert 10 000 items.
-  for ($i = 1; $i <= 10000; $i++) {
-
-    $q = prepare_query($query, $now);
+  foreach ($queries as $q) {
     $result = $mysqli->query($q);
     if ($result === FALSE) {
       throw new Exception('Failed');
@@ -69,18 +73,23 @@ catch (Exception $e) {
 $query = "INSERT INTO yellow_tripdata_staging VALUES ";
 $val = "(NULL, %d, '%s', '%s', %d, %f, %f, %f, %d, '%s', %f, %f, %d, %f, %f, %f, %f, %f, %f, %f, '%s', '%s', '%s', '%s', '%s')";
 echo "Test query: $query \n";
+
+// Generate values first.
+$queries = [];
+for ($i = 1; $i <= 10; $i++) {
+  $values = [];
+  for ($i = 1; $i <= 1000; $i++) {
+    $values[] = prepare_query($val, $now);
+  }
+
+  $queries[] = $query . implode(',', $values);
+}
 try {
   $start_time = get_current_time();
 
   $now = time();
   // Insert 10 000 items.
-  for ($i = 1; $i <= 10; $i++) {
-    $values = [];
-    for ($i = 1; $i <= 1000; $i++) {
-      $values[] = prepare_query($val, $now);
-    }
-
-    $q = $query . implode(',', $values);
+  foreach ($queries as $q) {
     $result = $mysqli->query($q);
     if ($result === FALSE) {
       throw new Exception('Failed');
