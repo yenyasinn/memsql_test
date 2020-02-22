@@ -4,4 +4,4 @@ memsql -uroot -proot columnstore < setup_files/create_nyc_taxi_schema_columnstor
 
 memsql -uroot -proot rowstore < setup_files/create_nyc_taxi_schema_rowstore.sql
 
-memsql -uroot -proot test < setup_files/create_nyc_taxi_schema_rowstore.sql
+mysql -uroot -proot test < setup_files/create_nyc_taxi_schema_rowstore.sql
