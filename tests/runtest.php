@@ -32,7 +32,6 @@ foreach ($queries as $query) {
     $start_time = get_current_time();
 
     $result = $mysqli->query($query);
-    //var_dump($result);
     if ($result !== FALSE) {
       $end_time = get_current_time();
 
@@ -44,6 +43,5 @@ foreach ($queries as $query) {
     }
   }
 }
-
 
 $mysqli->close();
