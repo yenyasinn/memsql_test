@@ -14,11 +14,11 @@ switch ($cli_options['d']) {
     break;
 
   case 'memsql_rowstore':
-    $mysqli = new mysqli('127.0.0.1', 'root', 'root', 'rowstore', 3306);
+    $mysqli = new mysqli('127.0.0.1', 'root', '', 'rowstore', 3306);
     break;
 
   case 'memsql_columnstore':
-    $mysqli = new mysqli('127.0.0.1', 'root', 'root', 'columnstore', 3306);
+    $mysqli = new mysqli('127.0.0.1', 'root', '', 'columnstore', 3306);
     break;
 
   default:
