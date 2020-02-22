@@ -1,6 +1,6 @@
 <?php
 /**
- * Usage: "php runupdate.php -d [mysql|memsql_rowstore|memsql_columnstore]"
+ * Usage: "php rundelete.php -d [mysql|memsql_rowstore|memsql_columnstore]"
  */
 
 include '_connect_db.php';
@@ -10,7 +10,7 @@ if ($mysqli->connect_errno) {
 }
 
 // Update single items.
-$query = "UPDATE yellow_tripdata_staging SET tip_amount = 0, tolls_amount = 0 WHERE id = ";
+$query = "DELETE FROM yellow_tripdata_staging WHERE id = ";
 echo "Test query: $query \n";
 
 try {
@@ -34,7 +34,7 @@ catch (Exception $e) {
 }
 
 // Update range of items.
-$query = "UPDATE yellow_tripdata_staging SET tip_amount = 0, tolls_amount = 0 WHERE id >= 1 AND id <= 10000";
+$query = "DELETE FROM yellow_tripdata_staging WHERE id >= 1 AND id <= 10000";
 echo "Test query: $query \n";
 
 $start_time = get_current_time();
