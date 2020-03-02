@@ -35,6 +35,8 @@ CREATE TABLE yellow_tripdata_staging (
   junk1 varchar(255),
   junk2 varchar(255),
   PRIMARY KEY (`id`)
+  /* INDEX (`rate_code_id`), */
+  /* INDEX (`payment_type`) */
 );
 
 /* Rate code */
